@@ -1,0 +1,96 @@
+/**
+ * Phoenix International SARL - Site Web Officiel
+ * 
+ * Copyright © 2024 Phoenix International SARL. Tous droits réservés.
+ * 
+ * Développé par Georges Edimo
+ * Développeur Full Stack | Expert en React, Next.js, TypeScript
+ * Portfolio : https://georgesedimo.com
+ * 
+ * Ce code est la propriété exclusive de Phoenix International SARL.
+ * Toute reproduction, modification, distribution ou utilisation non autorisée
+ * est strictement interdite sans le consentement écrit préalable.
+ */
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// Modèle Utilisateur pour l'authentification admin
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Modèle Produit pour la boutique
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  category    String
+  price       Float
+  image       String
+  description String
+  stock       Int      @default(0)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Modèle Commande
+model Order {
+  id             String   @id @default(cuid())
+  orderId        String   @unique
+  customerName   String
+  customerEmail  String
+  customerPhone  String
+  customerAddress String
+  customerCity   String
+  customerCountry String  @default("Cameroun")
+  paymentMethod  String
+  status         String   @default("En attente")
+  total          Float
+  items          Json
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// Modèle Article d'actualité
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  excerpt     String
+  content     String
+  author      String
+  category    String
+  status      String   @default("Publié")
+  views       Int      @default(0)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Modèle Commentaire
+model Comment {
+  id        String   @id @default(cuid())
+  articleId String
+  author    String
+  email     String
+  content   String
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([articleId])
+}
