@@ -3,9 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useLanguage } from './language-provider'
-import { useCart } from '@/contexts/CartContext'
 import { useTheme } from 'next-themes'
-import { Menu, X, Globe, Sun, Moon, ChevronDown, ShoppingCart } from 'lucide-react'
+import { Menu, X, Globe, Sun, Moon, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 
@@ -14,7 +13,6 @@ export default function Header() {
   const { language, setLanguage, t } = useLanguage()
   const { theme, setTheme } = useTheme()
   const [langOpen, setLangOpen] = useState(false)
-  const { getCartCount } = useCart()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary-200 dark:border-primary-800 bg-gradient-to-r from-white via-primary-50 to-accent-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60">
@@ -53,26 +51,10 @@ export default function Header() {
             <Link href="/news" className="text-sm font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all hover:scale-110 transform duration-300">
               Actualités
             </Link>
-            <Link href="/shop" className="text-sm font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all hover:scale-110 transform duration-300">
-              {t('nav.shop')}
-            </Link>
           </nav>
 
           {/* Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* Cart */}
-            <Link
-              href="/cart"
-              className="relative p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
-            >
-              <ShoppingCart className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" />
-              {getCartCount() > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {getCartCount()}
-                </span>
-              )}
-            </Link>
-
             {/* Language Selector */}
             <div className="relative">
               <button
@@ -174,28 +156,6 @@ export default function Header() {
               onClick={() => setIsOpen(false)}
             >
               Actualités
-            </Link>
-            <Link
-              href="/shop"
-              className="block text-sm font-medium text-gray-900 dark:text-white hover:text-primary-500 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              {t('nav.shop')}
-            </Link>
-            
-            {/* Cart in Mobile Menu */}
-            <Link
-              href="/cart"
-              className="flex items-center space-x-2 text-sm font-medium text-gray-900 dark:text-white hover:text-primary-500 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              <ShoppingCart className="h-4 w-4" />
-              <span>Panier</span>
-              {getCartCount() > 0 && (
-                <span className="bg-gradient-to-r from-primary-500 to-accent-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {getCartCount()}
-                </span>
-              )}
             </Link>
 
             <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
