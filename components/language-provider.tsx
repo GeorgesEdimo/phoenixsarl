@@ -17,6 +17,7 @@ const translations = {
     'nav.services': 'Services',
     'nav.partners': 'Partenaires',
     'nav.contact': 'Contact',
+    'nav.news': 'Actualités',
     'nav.shop': 'Boutique',
     
     // Hero
@@ -24,7 +25,7 @@ const translations = {
     'hero.subtitle': 'Votre partenaire multisectoriel de confiance pour les services, le commerce, la logistique et le transport',
     'hero.cta1': 'Découvrir nos services',
     'hero.cta2': 'Demander un devis',
-    'hero.slogan': 'votre projet, notre expertise',
+    'hero.slogan': 'Votre projet, notre expertise',
     'hero.cta_text': 'Contactez-nous dès aujourd\'hui pour découvrir comment nous pouvons vous aider à atteindre vos objectifs.',
     'hero.cta_title': 'Prêt à collaborer avec nous ?',
     'hero.badge': 'Excellence & Innovation',
@@ -105,7 +106,7 @@ const translations = {
     'contact.info_title': 'Informations de contact',
     'contact.address_value': 'Yaoundé, Rue 4.771, Cameroun',
     'contact.phone_value': '+237 693 674 211 / +237 675 385 034',
-    'contact.email_value': 'phoenixinternationalsarl2@gmail.com',
+    'contact.email_value': 'contact@phoenixinternationalsarl.com',
     'contact.map_title': 'Carte Phoenix International SARL - Yaoundé',
     'contact.hours_label': 'Heures d\'ouverture',
     'contact.hours_value': 'Lun - Ven: 8h00 - 18h00',
@@ -291,6 +292,7 @@ const translations = {
     'nav.services': 'Services',
     'nav.partners': 'Partners',
     'nav.contact': 'Contact',
+    'nav.news': 'News',
     'nav.shop': 'Shop',
     
     // Hero
@@ -298,7 +300,7 @@ const translations = {
     'hero.subtitle': 'Your trusted multisector partner for services, trade, logistics, and transportation',
     'hero.cta1': 'Discover our services',
     'hero.cta2': 'Request a quote',
-    'hero.slogan': 'your project, our expertise',
+    'hero.slogan': 'Your project, our expertise',
     'hero.cta_text': 'Contact us today to discover how we can help you achieve your goals.',
     'hero.cta_title': 'Ready to collaborate with us?',
     'hero.badge': 'Excellence & Innovation',
@@ -379,7 +381,7 @@ const translations = {
     'contact.info_title': 'Contact Information',
     'contact.address_value': 'Yaoundé, Rue 4.771, Cameroon',
     'contact.phone_value': '+237 693 674 211 / +237 675 385 034',
-    'contact.email_value': 'phoenixinternationalsarl2@gmail.com',
+    'contact.email_value': 'contact@phoenixinternationalsarl.com',
     'contact.map_title': 'Phoenix International SARL Map - Yaoundé',
     'contact.hours_label': 'Opening Hours',
     'contact.hours_value': 'Mon - Fri: 8:00 AM - 6:00 PM',

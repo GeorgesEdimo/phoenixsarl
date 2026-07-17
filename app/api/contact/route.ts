@@ -13,9 +13,18 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Create transporter with SMTP configuration
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'mail03.lwspanel.com',
+  port: parseInt(process.env.SMTP_PORT || '465'),
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER || 'contact@phoenixinternationalsarl.com',
+    pass: process.env.SMTP_PASSWORD || '',
+  },
+})
 
 export async function POST(request: NextRequest) {
   try {
@@ -40,9 +49,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Envoyer l'email à Phoenix International SARL
-    const { data, error } = await resend.emails.send({
-      from: 'Phoenix International SARL <contact@phoenixinternational.com>',
-      to: ['contact@phoenixinternationalsarl.com'],
+    const mailOptions = {
+      from: process.env.SMTP_FROM || 'Phoenix International SARL <contact@phoenixinternational.com>',
+      to: 'contact@phoenixinternationalsarl.com',
       subject: `Nouveau message de contact - ${subject || 'Sans sujet'}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -92,20 +101,14 @@ export async function POST(request: NextRequest) {
           </div>
         </div>
       `,
-    })
-
-    if (error) {
-      console.error('Erreur Resend:', error)
-      return NextResponse.json(
-        { error: 'Erreur lors de l\'envoi de l\'email' },
-        { status: 500 }
-      )
     }
 
+    await transporter.sendMail(mailOptions)
+
     // Envoyer un email de confirmation à l'expéditeur
-    await resend.emails.send({
-      from: 'Phoenix International SARL <contact@phoenixinternational.com>',
-      to: [email],
+    const confirmationMailOptions = {
+      from: process.env.SMTP_FROM || 'Phoenix International SARL <contact@phoenixinternational.com>',
+      to: email,
       subject: 'Confirmation de votre message - Phoenix International SARL',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -153,7 +156,9 @@ export async function POST(request: NextRequest) {
           </div>
         </div>
       `,
-    })
+    }
+
+    await transporter.sendMail(confirmationMailOptions)
 
     return NextResponse.json(
       { message: 'Email envoyé avec succès' },
