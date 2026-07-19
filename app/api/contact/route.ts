@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
 
     // Envoyer l'email à Phoenix International SARL
     const mailOptions = {
-      from: process.env.SMTP_FROM || 'Phoenix International SARL <contact@phoenixinternational.com>',
+      from: process.env.SMTP_FROM || 'Phoenix International SARL <contact@phoenixinternationalsarl.com>',
       to: 'contact@phoenixinternationalsarl.com',
       subject: `Nouveau message de contact - ${subject || 'Sans sujet'}`,
       html: `
@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
 
     // Envoyer un email de confirmation à l'expéditeur
     const confirmationMailOptions = {
-      from: process.env.SMTP_FROM || 'Phoenix International SARL <contact@phoenixinternational.com>',
+      from: process.env.SMTP_FROM || 'Phoenix International SARL <contact@phoenixinternationalsarl.com>',
       to: email,
       subject: 'Confirmation de votre message - Phoenix International SARL',
       html: `
